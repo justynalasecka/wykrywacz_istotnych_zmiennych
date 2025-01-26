@@ -1,0 +1,4 @@
+.env
+app_kopia.py
+test.ipynb
+app_QDrant.py

@@ -1,0 +1,7 @@
+pandas
+pycaret
+qdrant-client
+python-dotenv
+streamlit
+pycaret==3.3.1
+openai
