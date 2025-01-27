@@ -108,7 +108,7 @@ if uploaded_file is not None:
 
             elif modeling_choice == 'regresja':
                 reg = setup_regression(cleaned_data, target = selected_column, session_id=123, ignore_features=ignore_f)
-                chosen_model = create_model_regression("et")
+                chosen_model = create_model_regression("lr")
                 img = plot_model_regression(chosen_model, plot='feature', display_format='streamlit', save=True)
                 #best_model = compare_models_regression()
                 #img = plot_model_regression(best_model, plot='feature', display_format='streamlit', save=True)
