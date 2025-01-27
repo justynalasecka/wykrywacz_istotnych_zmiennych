@@ -92,7 +92,7 @@ if uploaded_file is not None:
 
     cleaned_data = data.dropna(subset=[selected_column])
 
-    ignore_f = st.sidebar.multiselect("Wybierz, które kolumny mają być zignorowane przy analizie (opcjonalnie)", cleaned_data.columns.tolist(), [])
+    ignore_f = st.sidebar.multiselect("Wybierz, które kolumny mają być zignorowane przy analizie (opcjonalnie):", cleaned_data.columns.tolist(), [])
 
     modeling_choice = st.sidebar.radio('Wybierz typ modelowania:', ['klasyfikacja', 'regresja'])
     if st.button("Uruchom analizę"):
