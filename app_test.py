@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-from pycaret.classification import setup as setup_classification, compare_models as compare_classification_models, plot_model as plot_classification_model
-from pycaret.regression import setup as setup_regression, compare_models as compare_models_regression, plot_model as plot_model_regression
+from pycaret.classification import setup as setup_classification, compare_models as compare_classification_models, plot_model as plot_classification_model, create_model as create_classification_model
+from pycaret.regression import setup as setup_regression, compare_models as compare_models_regression, plot_model as plot_model_regression, create_model as create_model_regression
 from dotenv import dotenv_values
 from openai import OpenAI
 import base64
@@ -100,18 +100,21 @@ if uploaded_file is not None:
 
             if modeling_choice == 'klasyfikacja':
                 clf = setup_classification(cleaned_data, target = selected_column, session_id=123, ignore_features=ignore_f)
-                best_model = compare_classification_models()
-                img = plot_classification_model(best_model, plot='feature', display_format='streamlit', save=True)
+                chosen_model = create_classification_model("lr")
+                img = plot_classification_model(chosen_model, plot='feature', display_format='streamlit', save=True)
+                #best_model = compare_classification_models()
+                #img = plot_classification_model(best_model, plot='feature', display_format='streamlit', save=True)
                 st.image(img)
 
             elif modeling_choice == 'regresja':
                 reg = setup_regression(cleaned_data, target = selected_column, session_id=123, ignore_features=ignore_f)
-                best_model = compare_models_regression()
-                img = plot_model_regression(best_model, plot='feature', display_format='streamlit', save=True)
+                chosen_model = create_model_regression("et")
+                img = plot_model_regression(chosen_model, plot='feature', display_format='streamlit', save=True)
+                #best_model = compare_models_regression()
+                #img = plot_model_regression(best_model, plot='feature', display_format='streamlit', save=True)
                 st.image(img)
 
         with st.spinner("Generuję opis wykresu..."):        
             if img:
                 describe = describe_image("Feature Importance.png")
-                st.write(describe)
-    
+                st.write(describe)    
